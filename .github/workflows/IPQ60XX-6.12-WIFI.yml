@@ -65,6 +65,7 @@ jobs:
         df -hT $GITHUB_WORKSPACE
         git clone -b $REPO_BRANCH $REPO_URL openwrt
         cd openwrt
+        git checkout 6dcb5e9
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         VERSION_INFO=$(git show -s --date=short --format="作者: %an<br/>时间: %cd<br/>内容: %s<br/>hash: %H")
         echo "VERSION_INFO=$VERSION_INFO" >> $GITHUB_ENV
@@ -94,6 +95,8 @@ jobs:
     - name: Install Feeds(安装feeds)
       run: |
         cd $OPENWRT_PATH
+        rm -rf feeds.conf.default
+        cp ../feeds.conf.default feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
   
