@@ -63,8 +63,6 @@ jobs:
       run: |
         df -hT $GITHUB_WORKSPACE
         git clone -b $REPO_BRANCH $REPO_URL openwrt
-        cd openwrt
-        git checkout 66c489362b7b8df08c51529f1eeffd7e5b5f48a0
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         VERSION_INFO=$(git show -s --date=short --format="作者: %an<br/>时间: %cd<br/>内容: %s<br/>hash: %H")
         echo "VERSION_INFO=$VERSION_INFO" >> $GITHUB_ENV
