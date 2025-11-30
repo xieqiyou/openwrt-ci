@@ -6,5 +6,6 @@ git clone --depth 1 https://github.com/sbwml/openwrt_pkgs.git package/new/custom
 mv package/new/custom/luci-app-netspeedtest  package/new
 mv package/new/custom/speedtest-cli package/new
 rm -rf package/new/custom
-
+./scripts/feeds update -a 
+./scripts/feeds install -a
 
