@@ -9,6 +9,7 @@ env:
   REPO_URL: https://github.com/LiBwrt/openwrt-6.x.git
   REPO_BRANCH: k6.12-nss
   CONFIG_FILE: configs/ipq60xx-6.12-wifi.config
+  FEEDS_CONF: feeds.conf.default
   DIY_SCRIPT: libwrt.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: false
@@ -93,16 +94,17 @@ jobs:
     
     - name: Install Feeds(安装feeds)
       run: |
-        cd $OPENWRT_PATH
-        ./scripts/feeds update -a
-        ./scripts/feeds install -a
+         [ -e $FEEDS_CONF ] && cp $FEEDS_CONF ${GITHUB_WORKSPACE}/openwrt/feeds.conf.default
+         cd $OPENWRT_PATH
+         ./scripts/feeds update -a 
+         ./scripts/feeds install -a
   
     - name: Load Custom Configuration(加载自定义配置)
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
-        chmod +x $DIY_SCRIPT
         cd $OPENWRT_PATH
+        chmod +x $DIY_SCRIPT
         $GITHUB_WORKSPACE/$DIY_SCRIPT
 
     - name: Download DL Package(下载DL软件包)
