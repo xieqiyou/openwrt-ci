@@ -1,21 +1,17 @@
-From: Your Name <your@email.com>
-Date: Tue, 02 Dec 2025 10:00:00 +0000
-Subject: Upgrade CMake minimum version to 3.5 for compatibility
+From: OpenWrt CI AutoPatch <ci@openwrt.local>
+Date: Thu, 04 Dec 2025 10:30:00 +0800
+Subject: Upgrade CMake min version to 3.5 (line 25)
 
 ---
  CMakeLists.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index abcdef1..xyz7890 100644
+index abcdef1..1234567 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -22,7 +22,7 @@
- # See LICENSE file for details.
+@@ -23,4 +23,4 @@
  #
-
 -cmake_minimum_required(VERSION 2.8.12)
 +cmake_minimum_required(VERSION 3.5)
-
- project(libwebsockets C)
- set(LWS_VERSION "4.3.3")
+ include(CheckFunctionExists)
