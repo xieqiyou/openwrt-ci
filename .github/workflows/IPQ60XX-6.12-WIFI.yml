@@ -13,7 +13,7 @@ env:
   DIY_SCRIPT1: libwrt.sh
   DIY_SCRIPT2: feed.sh
   CLASH_KERNEL: amd64
-  CACHE_TOOLCHAIN: false
+  CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: true
   FIRMWARE_RELEASE: true
   FIRMWARE_TAG: IPQ60XX-6.12-WIFI
@@ -63,10 +63,7 @@ jobs:
         swap-size-mb: 1024
         temp-reserve-mb: 100
         root-reserve-mb: 1024
-
-    - name: Checkout
-      uses: actions/checkout@main
-
+        
     - name: Clone Source Code(克隆源代码)
       run: |
         df -hT $GITHUB_WORKSPACE
