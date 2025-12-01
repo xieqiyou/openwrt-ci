@@ -48,8 +48,6 @@ jobs:
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
 
-
-
     - name: Combine Disks(合并磁盘)
       uses: easimon/maximize-build-space@master
       with:
