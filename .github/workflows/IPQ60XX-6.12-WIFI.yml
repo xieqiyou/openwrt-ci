@@ -44,7 +44,7 @@ jobs:
       run: |
         sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
         sudo -E apt-get -qq update
-        sudo -E apt-get -qq install $(cat $GITHUB_WORKSPACE/depends-ubuntu-2004)
+        sudo -E apt-get -qq install $(cat ${GITHUB_WORKSPACE}/depends2204)
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
 
@@ -113,11 +113,6 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-    
-    - name: Fix libwebsockets CMake compatibility
-      run: |
-         LIBWEBSOCKETS_DIR="/home/runner/work/openwrt-ci/openwrt-ci/openwrt/build_dir/target-aarch64_cortex-a53_musl/libwebsockets-full/libwebsockets-4.3.3"
-         sed -i '25s/cmake_minimum_required(VERSION .*)/cmake_minimum_required(VERSION 3.5)/' "${LIBWEBSOCKETS_DIR}/CMakeLists.txt"
          
     - name: Compile Firmware(开始编译固件)
       id: compile
