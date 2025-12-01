@@ -24,6 +24,9 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+    - name: Checkout
+      uses: actions/checkout@main
+      
     - name: Check Server Performance(检查服务器性能)
       run: |
         echo "警告⚠"
