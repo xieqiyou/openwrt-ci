@@ -50,6 +50,12 @@ jobs:
         sudo -E apt-get -qq install $(cat ${GITHUB_WORKSPACE}/depends2204)
         sudo -E apt-get -qq clean
         sudo timedatectl set-timezone "$TZ"
+        wget https://github.com/Kitware/CMake/releases/download/v3.16.3/cmake-3.16.3-Linux-x86_64.tar.gz          
+        tar -zxf cmake-3.16.3-Linux-x86_64.tar.gz   
+        sudo cp -r cmake-3.16.3-Linux-x86_64/bin/* /usr/local/bin/          
+        sudo cp -r cmake-3.16.3-Linux-x86_64/share/* /usr/local/share/       
+    - name: 验证版本        
+      run: cmake --version
 
     - name: Combine Disks(合并磁盘)
       uses: easimon/maximize-build-space@master
