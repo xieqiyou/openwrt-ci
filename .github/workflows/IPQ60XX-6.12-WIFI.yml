@@ -60,7 +60,7 @@ jobs:
         sudo timedatectl set-timezone "$TZ"
         
     - name: Install Correct CMake Version(安装正确的CMake版本)
-        run:|
+      run: |
         sudo apt remove -y cmake
         wget https://github.com/Kitware/CMake/releases/download/v3.16.3/cmake-3.16.3-Linux-x86_64.tar.gz
         tar -xzf cmake-3.16.3-Linux-x86_64.tar.gz
