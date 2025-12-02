@@ -58,6 +58,17 @@ jobs:
         sudo -E apt-get -qq clean
         sudo apt purge -y cmake
         sudo timedatectl set-timezone "$TZ"
+    - name: Install Correct CMake Version(安装正确的CMake版本)
+        run:|
+        sudo apt remove -y cmake
+        wget https://github.com/Kitware/CMake/releases/download/v3.16.3/cmake-3.16.3-Linux-x86_64.tar.gz
+        tar -xzf cmake-3.16.3-Linux-x86_64.tar.gz
+        sudo cp -r cmake-3.16.3-Linux-x86_64/* /usr/local/
+        sudo ln -sf /usr/local/bin/cmake /usr/bin/cmake
+        sudo ln -sf /usr/local/bin/ctest /usr/bin/ctest
+        sudo ln -sf /usr/local/bin/cpack /usr/bin/cpack
+        echo "CMake 版本:"
+        /usr/local/bin/cmake --version
         
     - name: Clone Source Code(克隆源代码)
       run: |
@@ -120,15 +131,6 @@ jobs:
       run: |
         cd $OPENWRT_PATH
         echo -e "$(nproc) thread compile"
-        sudo apt remove -y cmake
-        wget https://github.com/Kitware/CMake/releases/download/v3.16.3/cmake-3.16.3-Linux-x86_64.tar.gz
-        tar -xzf cmake-3.16.3-Linux-x86_64.tar.gz
-        sudo cp -r cmake-3.16.3-Linux-x86_64/* /usr/local/
-        
-        # 确保路径正确
-        sudo ln -sf /usr/local/bin/cmake /usr/bin/cmake
-        sudo ln -sf /usr/local/bin/ctest /usr/bin/ctest
-        sudo ln -sf /usr/local/bin/cpack /usr/bin/cpack
         echo "当前 CMake 版本:"
         which cmake
         cmake --version
