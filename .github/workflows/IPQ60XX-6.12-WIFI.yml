@@ -24,9 +24,16 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+    - name: Combine Disks(合并磁盘)
+      uses: easimon/maximize-build-space@master
+      with:
+        swap-size-mb: 1024
+        temp-reserve-mb: 100
+        root-reserve-mb: 1024
+        
     - name: Checkout
-      uses: actions/checkout@main
-      
+      uses: actions/checkout@main 
+     
     - name: Check Server Performance(检查服务器性能)
       run: |
         echo "警告⚠"
@@ -59,16 +66,6 @@ jobs:
           
     - name: Verify CMake Version
       run: cmake --version
-    
-    - name: Combine Disks(合并磁盘)
-      uses: easimon/maximize-build-space@master
-      with:
-        swap-size-mb: 1024
-        temp-reserve-mb: 100
-        root-reserve-mb: 1024
-        
-    - name: Checkout
-      uses: actions/checkout@main 
       
     - name: Clone Source Code(克隆源代码)
       run: |
