@@ -54,7 +54,7 @@ jobs:
     - name: Install CMake 3.16.3
       uses: jwlawson/actions-setup-cmake@v2
       with:
-          cmake-version: '3.3.0' 
+          cmake-version: '3.13.5' 
           
     - name: Verify CMake Version
       run: cmake --version
