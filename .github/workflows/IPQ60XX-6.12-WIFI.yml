@@ -59,14 +59,6 @@ jobs:
         sudo apt purge -y cmake
         sudo timedatectl set-timezone "$TZ"
         
-    - name: Install CMake 3.16.3
-      uses: jwlawson/actions-setup-cmake@v2
-      with:
-          cmake-version: '3.13.5' 
-          
-    - name: Verify CMake Version
-      run: cmake --version
-      
     - name: Clone Source Code(克隆源代码)
       run: |
         df -hT $GITHUB_WORKSPACE
@@ -128,6 +120,11 @@ jobs:
       run: |
         cd $OPENWRT_PATH
         echo -e "$(nproc) thread compile"
+        sudo apt remove -y cmake
+        wget https://github.com/Kitware/CMake/releases/download/v3.16.3/cmake-3.16.3-Linux-x86_64.tar.gz
+        tar -xzf cmake-3.16.3-Linux-x86_64.tar.gz
+        sudo cp -r cmake-3.16.3-Linux-x86_64/* /usr/
+        cmake --version
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
         echo "DATE=$(date +"%Y-%m-%d %H:%M:%S")" >> $GITHUB_ENV
