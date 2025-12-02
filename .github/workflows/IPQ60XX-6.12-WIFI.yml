@@ -58,6 +58,7 @@ jobs:
         sudo -E apt-get -qq clean
         sudo apt purge -y cmake
         sudo timedatectl set-timezone "$TZ"
+        
     - name: Install Correct CMake Version(安装正确的CMake版本)
         run:|
         sudo apt remove -y cmake
