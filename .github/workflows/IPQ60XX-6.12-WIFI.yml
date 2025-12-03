@@ -59,18 +59,6 @@ jobs:
         sudo apt purge -y cmake
         sudo timedatectl set-timezone "$TZ"
         
-    - name: Install Correct CMake Version(安装正确的CMake版本)
-      run: |
-        sudo apt remove -y cmake
-        wget https://github.com/Kitware/CMake/releases/download/v3.16.3/cmake-3.16.3-Linux-x86_64.tar.gz
-        tar -xzf cmake-3.16.3-Linux-x86_64.tar.gz
-        sudo cp -r cmake-3.16.3-Linux-x86_64/* /usr/local/
-        sudo ln -sf /usr/local/bin/cmake /usr/bin/cmake
-        sudo ln -sf /usr/local/bin/ctest /usr/bin/ctest
-        sudo ln -sf /usr/local/bin/cpack /usr/bin/cpack
-        echo "CMake 版本:"
-        /usr/local/bin/cmake --version
-        
     - name: Clone Source Code(克隆源代码)
       run: |
         df -hT $GITHUB_WORKSPACE
@@ -133,13 +121,6 @@ jobs:
         cd $OPENWRT_PATH
         echo -e "$(nproc) thread compile"
         echo "当前 CMake 版本:"
-        which cmake
-        cmake --version
-        if ! cmake --version | grep -q "3.16.3"; then
-            echo "错误: CMake 版本不是 3.16.3"
-            echo "正在使用的 cmake 路径: $(which cmake)"
-            exit 1
-        fi
         cmake --version
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> $GITHUB_OUTPUT
