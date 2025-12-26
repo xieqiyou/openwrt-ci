@@ -9,7 +9,7 @@ env:
   REPO_URL: https://github.com/LiBwrt/openwrt-6.x.git
   REPO_BRANCH: k6.12-nss
   CONFIG_FILE: configs/ipq60xx-6.12-wifi.config
-  FEEDS_CONF: feeds.conf.default
+  FEEDS_CONF: feeds.conf.default1
   DIY_SCRIPT1: libwrt.sh
   DIY_SCRIPT2: feed.sh
   CLASH_KERNEL: amd64
@@ -63,7 +63,7 @@ jobs:
         df -hT $GITHUB_WORKSPACE
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
-        git checkout 2d66e25
+        git checkout d7fec43
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
         VERSION_INFO=$(git show -s --date=short --format="作者: %an<br/>时间: %cd<br/>内容: %s<br/>hash: %H")
         echo "VERSION_INFO=$VERSION_INFO" >> $GITHUB_ENV
