@@ -9,7 +9,7 @@ chmod +x package/luci-app-athena-led/root/etc/init.d/athena_led package/luci-app
 #mv package/new/custom/luci-app-netspeedtest  package/new
 #mv package/new/custom/speedtest-cli package/new
 #rm -rf package/new/custom
-git clone https://github.com/EasyTier/luci-app-easytier.git^839286e package/EasyTier
-git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
+git clone https://github.com/EasyTier/luci-app-easytier.git package/EasyTier
+git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 ./scripts/feeds update -i 
 ./scripts/feeds install -a
