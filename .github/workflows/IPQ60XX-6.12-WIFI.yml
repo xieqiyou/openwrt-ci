@@ -94,8 +94,6 @@ jobs:
          [ -e $FEEDS_CONF ] && cp $FEEDS_CONF $OPENWRT_PATH/feeds.conf.default
          cd $OPENWRT_PATH
          ./scripts/feeds update -a 
-         rm -rf package/new/custom
-         ./scripts/feeds install -a
   
     - name: Load Custom Configuration(加载自定义配置)
       run: |
@@ -105,6 +103,7 @@ jobs:
         cd $OPENWRT_PATH
         $GITHUB_WORKSPACE/$DIY_SCRIPT2
         $GITHUB_WORKSPACE/$DIY_SCRIPT1
+        ./scripts/feeds install -a
 
     - name: Download DL Package(下载DL软件包)
       run: |
