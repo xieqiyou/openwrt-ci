@@ -16,4 +16,3 @@ cd ..
 cd ..
 git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
 ./scripts/feeds update -i 
-./scripts/feeds install -a
