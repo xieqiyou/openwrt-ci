@@ -14,5 +14,5 @@ cd package/EasyTier
 git checkout 0649c42
 cd ..
 cd ..
-git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
-./scripts/feeds update -i 
+git clone https://github.com/lmq8267/luci-app-vnt.git package/vnt
+git clone https://github.com/gdy666/luci-app-lucky.git package/lucky 
